@@ -168,7 +168,7 @@ a {
 
 #left-sidebar {
   position: relative;
-  min-width: 60px;
+  min-width: 78px;
   width: 200px;
   padding: 9px 0px 10px;
 }
@@ -222,6 +222,20 @@ a {
   margin-left: 12px;
 }
 
+.file .icon:before{
+  font-size: 8pt;
+  color: #808080;
+  overflow-x: hidden;
+  float: left;
+  margin-right: 1px;
+}
+
+.file .noIndicator:before{}
+
+.file .withIndicator:before{
+  content:'\26AB';
+}
+
 .file-name, .file-name-input, .directory-name {
   font-size: 10pt;
   font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", monospace;
@@ -238,8 +252,8 @@ a {
 
 .file, .directory {
   position: relative;
-  padding: 0px 8px;
-  margin: 5px 0px;
+  padding: 3px 8px;
+  margin: 0px 0px;
   cursor: pointer;
 }
 
@@ -448,4 +462,39 @@ a {
   display: none;
 }
 
+.rightClickFile-menu, .rightClickDire-menu, .rightClickTree-menu, .clickNew-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+}
 
+.rightClickFile-menu li, .rightClickDire-menu li, .rightClickTree-menu li, .clickNew-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.rightClickFile-menu li:hover, .rightClickDire-menu li:hover, .rightClickTree-menu li:hover, .clickNew-menu li:hover  {
+    background-color: #DEF;
+}
+
+.rightClickDire-menu li:nth-last-child(2), .rightClickDire-menu li:nth-last-child(3), .rightClickTree-menu li:nth-last-child(1) {
+  border-top: 1px solid #CCC;
+}
+
+.clickNew-menu {
+    border-top: none;
+    border-right: none;
+    border-radius: 0px;
+    color: #5f8700;
+    top: 41px;
+    right: 0px;
+}

@@ -17,7 +17,7 @@ timers = [];
 intervals = [];
 
 exports.setup = function (files, view, fdbk) {
-  var drop, download, editor, fileName, opening, rename, session;
+  var drop, download, editor, fileName, opening, rename, session, fullName;
 
   function stop() {
     windows.forEach(function (win) {
@@ -99,7 +99,7 @@ exports.setup = function (files, view, fdbk) {
     name = fileName.text();
     value = session.getValue();
 
-    if (files.isChanged(name, value)) {
+    if (files.isChanged(fullName, value)) {
       compiler.forget(name);
       stop();
       feedback.compilation.waiting();
@@ -118,6 +118,8 @@ exports.setup = function (files, view, fdbk) {
 
     name = fileName.text();
     modname = path.basename(name, ".grace");
+
+    files.removeIndicator(fullName);
 
     compiler.compile(modname, session.getValue(), function (reason) {
       if (reason !== null) {
@@ -174,6 +176,7 @@ exports.setup = function (files, view, fdbk) {
 
   files.onOpen(function (name, content) {
     var slashIndex = name.lastIndexOf("/");
+    fullName = name;
 
     if (slashIndex !== -1) {
       name = name.substring(slashIndex + 1);
@@ -200,7 +203,7 @@ exports.setup = function (files, view, fdbk) {
 
   drop.click(function () {
     if (confirm("Are you sure you want to delete this file?")) {
-      files.remove();
+      files.remove(fullName);
       view.addClass("hidden");
       feedback.output.clear();
     }
@@ -219,7 +222,7 @@ exports.setup = function (files, view, fdbk) {
   rename.change(function () {
     var name = rename.css("display", "none").val();
     fileName.show();
-    files.rename(name);
+    files.rename(fullName, name, true);
   }).keypress(function (event) {
     if (event.which === 13) {
       rename.blur();

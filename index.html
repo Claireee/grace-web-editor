@@ -31,6 +31,10 @@
       </header>
       <input id="upload-input" type="file" multiple>
       <ul id="file-tree" class="fill"></ul>
+      <ul class='clickNew-menu'>
+        <li clickNew-action="file">File</li>
+        <li clickNew-action="directory">Directory</li>
+      </ul>
     </nav>
 
     <div id="left-sidebar-resize" class="no-select"></div>
@@ -96,6 +100,25 @@
       <input id="debugtoggle" type="checkbox">
     </div>
 
+    <ul class='rightClickFile-menu'>
+      <li rightClickFile-action="delete">Delete</li>
+      <li rightClickFile-action="rename">Rename</li>
+    </ul>
+
+    <ul class='rightClickDire-menu'>
+      <li rightClickDire-action="newFile">New File</li>
+      <li rightClickDire-action="newDire">New Directory</li>
+      <li rightClickDire-action="upload">Upload</li>
+      <li rightClickDire-action="delete">Delete</li>
+      <li rightClickDire-action="rename">Rename</li>
+    </ul>
+
+    <ul class='rightClickTree-menu'>
+      <li rightClickTree-action="newFile">New File</li>
+      <li rightClickTree-action="newDire">New Directory</li>
+      <li rightClickTree-action="upload">Upload</li>
+    </ul>
+    
   </body>
 
 </html>
